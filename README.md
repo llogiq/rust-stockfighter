@@ -1,2 +1,2 @@
 # rust-stockfighter
-Simple Rust Wrapper for stockfigher
+Simple Rust Wrapper for stockfighter
