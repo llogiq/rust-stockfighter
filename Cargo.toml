@@ -1,0 +1,7 @@
+[package]
+name = "stockfighter"
+version = "0.1.0"
+authors = ["Aaron Mell <aaronamell@gmail.com>"]
+
+[dependencies]
+hyper = "0.8.1"
