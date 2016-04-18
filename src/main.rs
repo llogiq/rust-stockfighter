@@ -1,10 +1,10 @@
+extern crate docopt;
 extern crate hyper;
 extern crate rustc_serialize;
-extern crate docopt;
 
 use docopt::Docopt;
+mod check_api;
 mod request;
-use self::request::Request;
 
 const VERSION: &'static str = env!("CARGO_PKG_VERSION");
 
@@ -37,11 +37,15 @@ fn main() {
         println!("StockFighter v{}", VERSION)
     } else if (args.cmd_checkapi)
     {
-        let request = Request {
-                requires_auth: false,
-                request_url: "https://api.stockfighter.io/ob/api/heartbeat"
-            };
+        let check_api = check_api::check_api();
 
-        println!("Response: {}", request.send_request());
+        if (check_api.ok)
+        {
+            println!("StockFighter API is up!");
+        }
+        else
+        {
+            println!("StockFighter API is down. Error is {}", check_api.error)
+        }
     }
 }
