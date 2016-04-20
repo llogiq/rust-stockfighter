@@ -1,4 +1,4 @@
-
+extern crate hyper;
 
 use std::io::Read;
 use hyper::Client;
@@ -6,7 +6,7 @@ use hyper::header::Connection;
 
 pub struct Request{
     pub requires_auth: bool,
-    pub request_url: &'static str
+    pub request_url: String
 }
 
 impl Request {
@@ -17,7 +17,7 @@ impl Request {
         let mut client = Client::new();
 
         // Creating an outgoing request.
-        let mut res = client.get(self.request_url)
+        let mut res = client.get(&self.request_url)
             // set a header
             .header(Connection::close())
             // let 'er go!
